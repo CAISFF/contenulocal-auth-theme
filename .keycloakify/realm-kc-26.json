@@ -1784,10 +1784,10 @@
         "timeout": "10000",
         "writeTimeout": "10000"
     },
-    "loginTheme": "keycloakify-starter",
+    "loginTheme": "contenulocal-auth",
     "accountTheme": "",
     "adminTheme": "",
-    "emailTheme": "keycloakify-starter",
+    "emailTheme": "contenulocal-auth",
     "eventsEnabled": false,
     "eventsListeners": ["keycloakify-logging", "jboss-logging"],
     "enabledEventTypes": [],

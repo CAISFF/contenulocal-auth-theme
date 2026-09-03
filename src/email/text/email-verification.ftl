@@ -8,7 +8,7 @@
 
 ${msg("emailVerificationGreeting", user.firstName, user.lastName)}
 
-${msg("emailVerificationAccountReady", realmName)}
+${msg("emailVerificationAccountReady")}
 
 ${msg("emailVerificationInstructions")}
 

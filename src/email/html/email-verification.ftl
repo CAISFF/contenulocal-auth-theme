@@ -17,7 +17,7 @@
     </p>
 
     <p class="text" style="margin:0 0 16px 0; font-size:16px; line-height:1.6; text-align:left;">
-        ${msg("emailVerificationAccountReady", realmName)}
+        ${msg("emailVerificationAccountReady")}
     </p>
 
     <p class="text" style="margin:0 0 16px 0; font-size:16px; line-height:1.6; text-align:left;">
