@@ -3,6 +3,7 @@
 # === Owned files start ===
 # email/html/email-verification.ftl
 # email/html/template.ftl
+# email/text/email-verification.ftl
 # === Owned files end =====
 
 # === @keycloakify/email-native v260007.0.0 ===
@@ -54,7 +55,6 @@
 /email/text/email-test.ftl
 /email/text/email-update-confirmation.ftl
 /email/text/email-verification-with-code.ftl
-/email/text/email-verification.ftl
 /email/text/event-login_error.ftl
 /email/text/event-remove_credential.ftl
 /email/text/event-remove_totp.ftl

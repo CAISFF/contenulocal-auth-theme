@@ -7,7 +7,13 @@ export default defineConfig({
     plugins: [
         react(),
         keycloakify({
-            accountThemeImplementation: "none"
+            accountThemeImplementation: "none",
+
+            // Nom visible dans Keycloak
+            themeName: "contenulocal-auth",
+
+            // Nom utilisé pour le JAR
+            artifactId: "contenulocal-auth-theme",
         })
     ]
 });
