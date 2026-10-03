@@ -8,9 +8,12 @@ export default defineConfig({
         react(),
         keycloakify({
             accountThemeImplementation: "none",
-            // Named explicitly: the theme name is what the Keycloak realm selects, so it must not
-            // drift with the npm package name.
-            themeName: "contenulocal"
+
+            // Nom visible dans Keycloak
+            themeName: "contenulocal-auth",
+
+            // Nom utilisé pour le JAR
+            artifactId: "contenulocal-auth-theme",
         })
     ]
 });
