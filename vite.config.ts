@@ -7,7 +7,10 @@ export default defineConfig({
     plugins: [
         react(),
         keycloakify({
-            accountThemeImplementation: "none"
+            accountThemeImplementation: "none",
+            // Named explicitly: the theme name is what the Keycloak realm selects, so it must not
+            // drift with the npm package name.
+            themeName: "contenulocal"
         })
     ]
 });
