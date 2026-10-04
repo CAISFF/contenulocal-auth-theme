@@ -2,8 +2,12 @@
 
 # === Owned files start ===
 # email/html/email-verification.ftl
+# email/html/executeActions.ftl
+# email/html/password-reset.ftl
 # email/html/template.ftl
 # email/text/email-verification.ftl
+# email/text/executeActions.ftl
+# email/text/password-reset.ftl
 # === Owned files end =====
 
 # === @keycloakify/email-native v260007.0.0 ===
@@ -19,10 +23,8 @@
 /email/html/event-update_totp.ftl
 /email/html/event-user_disabled_by_permanent_lockout.ftl
 /email/html/event-user_disabled_by_temporary_lockout.ftl
-/email/html/executeActions.ftl
 /email/html/identity-provider-link.ftl
 /email/html/org-invite.ftl
-/email/html/password-reset.ftl
 /email/messages/messages_ar.properties
 /email/messages/messages_ca.properties
 /email/messages/messages_cs.properties
@@ -63,7 +65,5 @@
 /email/text/event-update_totp.ftl
 /email/text/event-user_disabled_by_permanent_lockout.ftl
 /email/text/event-user_disabled_by_temporary_lockout.ftl
-/email/text/executeActions.ftl
 /email/text/identity-provider-link.ftl
 /email/text/org-invite.ftl
-/email/text/password-reset.ftl

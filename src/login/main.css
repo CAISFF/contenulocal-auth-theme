@@ -282,6 +282,35 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--color-primary);
 }
 
+/*
+ * Password visibility toggle. The class map names Bootstrap Icons classes, but this theme never
+ * loads that icon font, so the button rendered as an empty box. The two glyphs are inlined as a
+ * mask instead of pulling in a webfont, which also makes them follow the button's colour.
+ */
+.kcFormPasswordVisibilityIconShow,
+.kcFormPasswordVisibilityIconHide {
+    display: inline-block;
+    width: 1.125rem;
+    height: 1.125rem;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+.kcFormPasswordVisibilityIconShow {
+    -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 3C4.5 3 1.7 5.4 1 8c.7 2.6 3.5 5 7 5s6.3-2.4 7-5c-.7-2.6-3.5-5-7-5zm0 8.5A3.5 3.5 0 1 1 8 4.5a3.5 3.5 0 0 1 0 7zm0-1.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'/></svg>");
+    mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 3C4.5 3 1.7 5.4 1 8c.7 2.6 3.5 5 7 5s6.3-2.4 7-5c-.7-2.6-3.5-5-7-5zm0 8.5A3.5 3.5 0 1 1 8 4.5a3.5 3.5 0 0 1 0 7zm0-1.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'/></svg>");
+}
+
+.kcFormPasswordVisibilityIconHide {
+    -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 3C4.5 3 1.7 5.4 1 8c.7 2.6 3.5 5 7 5s6.3-2.4 7-5c-.7-2.6-3.5-5-7-5zm0 8.5A3.5 3.5 0 1 1 8 4.5a3.5 3.5 0 0 1 0 7zm0-1.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'/><path d='M1.8 1.1 14.9 14.2l-.7.7L1.1 1.8z'/></svg>");
+    mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 3C4.5 3 1.7 5.4 1 8c.7 2.6 3.5 5 7 5s6.3-2.4 7-5c-.7-2.6-3.5-5-7-5zm0 8.5A3.5 3.5 0 1 1 8 4.5a3.5 3.5 0 0 1 0 7zm0-1.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'/><path d='M1.8 1.1 14.9 14.2l-.7.7L1.1 1.8z'/></svg>");
+}
+
 /* ===== Checkboxes ===== */
 .form-check {
     display: flex;
@@ -376,6 +405,59 @@ h1, h2, h3, h4, h5, h6 {
     outline: none;
     box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.15);
     border-radius: var(--radius-sm);
+}
+
+/*
+ * OTP credential picker. Keycloak emits bare radios followed by labels carrying kcLoginOTPList*
+ * classes, which the Bootstrap class map does not cover: without these rules the page renders as
+ * "label1label2" with two naked radio buttons.
+ */
+.kcLoginOTPListInputClass {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.kcLoginOTPListClass {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    margin: 0 0 0.5rem 0;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.kcLoginOTPListClass:hover {
+    border-color: var(--color-gray-400);
+}
+
+.kcLoginOTPListInputClass:checked + .kcLoginOTPListClass {
+    border-color: var(--color-primary);
+    background: var(--color-primary-lighter);
+}
+
+/* The radio is visually hidden, so the focus ring has to live on the label it controls. */
+.kcLoginOTPListInputClass:focus-visible + .kcLoginOTPListClass {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.15);
+}
+
+.kcLoginOTPListItemHeaderClass {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.kcLoginOTPListItemTitleClass {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
 }
 
 /* ===== Form Buttons Area ===== */
@@ -712,12 +794,31 @@ a:hover {
     margin-bottom: 1.5rem;
 }
 
+/*
+ * The seal carries the identity above the card, as it does in the mails; the realm name stays below
+ * it as text rather than being swallowed by the image, so screen readers still announce the site.
+ * Vite fingerprints the asset and Keycloakify rewrites the URL to the theme's resources path.
+ */
 #kc-header-wrapper {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
     color: var(--color-primary);
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     font-weight: 700;
     letter-spacing: -0.025em;
+}
+
+#kc-header-wrapper::before {
+    content: "";
+    display: block;
+    width: 84px;
+    height: 84px;
+    background-image: url(./assets/spcl.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 .kcHeaderWrapperClass {
